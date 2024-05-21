@@ -2,7 +2,7 @@ import { movieSort } from "../ts/functions";
 import { IMovie } from "../ts/models/Movie";
 
 describe("movieSort", () => {
-  // En array med filmer för att använda i testfallen
+  // En array med filmer, att använda i testfallen
   const movies: IMovie[] = [
     {
       Title: "Avatar",
@@ -66,7 +66,7 @@ describe("movieSort", () => {
   // Testfall för att sortera filmerna i stigande ordning
   test("it should sort movies in ascending order", () => {
     const sortedMovies = movieSort([...movies], false);
-    // kontrollera att de sorterade filmerna innehåller rätt ordning och attribut
+    // Kontrollera att de sorterade filmerna innehåller rätt ordning och attribut
     expect(sortedMovies).toEqual(
       expect.arrayContaining([
         {
@@ -96,7 +96,7 @@ describe("movieSort", () => {
 
   // Testfall för att hantera filmer med lika titlar när ordningen är fallande
   test("it should handle movies with equal titles and desc is true", () => {
-    //Filmer med lika titlar
+    // Filmer med lika titlar
     const equalTitleMovies = [
       {
         Title: "Avatar",
@@ -121,7 +121,7 @@ describe("movieSort", () => {
       },
     ];
 
-    //Sortera filmerna i fallande ordning
+    // Sortera filmerna i fallande ordning
     const sortedMovies = movieSort(equalTitleMovies, true);
 
     // Kontrollera att de sorterade filmerna innehåller rätt ordning och attribut
@@ -152,7 +152,7 @@ describe("movieSort", () => {
     );
   });
 
-  // Testfall för att hangtera filmer med lika titlar när ordning är stigande
+  // Testfall för att hantera filmer med lika titlar när ordningen är stigande
   test("it should handle movies with equal titles and desc is false", () => {
     // Filmer med lika titlar
     const equalTitleMovies = [

@@ -7,7 +7,7 @@ jest.mock("../ts/services/movieService", () => ({
   getData: jest.fn(),
 }));
 
-// Toppomvandling för den mockade getData-funktionen
+// Omvandlar getData till en mock-funktion för testning
 const mockGetData = getData as jest.MockedFunction<typeof getData>;
 
 describe("handleSubmit", () => {
@@ -32,7 +32,7 @@ describe("handleSubmit", () => {
     ) as HTMLDivElement;
     form = document.getElementById("searchForm") as HTMLFormElement;
 
-    // Mockar formulärets subit-händelse för att anropa handleSubmit
+    // Mockar formulärets submit-händelse för att anropa handleSubmit
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       handleSubmit();
@@ -42,7 +42,7 @@ describe("handleSubmit", () => {
     init();
   });
 
-  test("it displays movies when getData returns results", async () => {
+  test("it should display movies when getData returns results", async () => {
     // Förbereder mock-data för getData
     const movies: IMovie[] = [
       {
@@ -69,7 +69,7 @@ describe("handleSubmit", () => {
     );
   });
 
-  test("it displays no result message when getData returns no results", async () => {
+  test("it should display no result message when getData returns no results", async () => {
     // Förbereder mock för tomt resultat
     mockGetData.mockResolvedValueOnce([]);
     searchText.value = "NonExistentMovie";
@@ -84,8 +84,8 @@ describe("handleSubmit", () => {
     expect(movieContainer.innerHTML).toContain("Inga sökresultat att visa");
   });
 
-  test("it displays no result message when getData throws an error", async () => {
-    // Förbereder mock för felkastning
+  test("it should display no result message when getData throws an error", async () => {
+    // Förbereder mock för felhantering
     mockGetData.mockRejectedValueOnce(new Error("API error"));
     searchText.value = "ErrorMovie";
 
@@ -101,7 +101,7 @@ describe("handleSubmit", () => {
 });
 
 describe("createHtml", () => {
-  test("it correctly appends movie elements to container", () => {
+  test("it should correctly append movie elements to container", () => {
     // Skapar en container-div
     const container = document.createElement("div");
     const movies: IMovie[] = [
@@ -140,14 +140,14 @@ describe("createHtml", () => {
 });
 
 describe("displayNoResult", () => {
-  test("it correctly displays no result message", () => {
+  test("it should correctly display no result message", () => {
     // Skapar en container-div
     const container = document.createElement("div");
 
     // Anropar displayNoResult-funktionen
     displayNoResult(container);
 
-    // Verifierar att inget resultat-meddelande visas korrekt
+    // Verifierar att inget resultat-meddelande visas på ett korrekt sätt
     expect(container.innerHTML).toContain("Inga sökresultat att visa");
   });
 });
