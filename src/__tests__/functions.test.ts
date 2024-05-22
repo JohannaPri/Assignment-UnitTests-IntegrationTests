@@ -32,7 +32,6 @@ describe("movieSort", () => {
     jest.clearAllMocks();
   });
 
-  // Testfall för att sortera filmerna i fallande ordning
   test("it should sort movies in descending order", () => {
     const sortedMovies = movieSort([...movies], true);
     // Kontrollera att de sorterade filmerna innehåller rätt ordning och attribut
@@ -63,7 +62,6 @@ describe("movieSort", () => {
     );
   });
 
-  // Testfall för att sortera filmerna i stigande ordning
   test("it should sort movies in ascending order", () => {
     const sortedMovies = movieSort([...movies], false);
     // Kontrollera att de sorterade filmerna innehåller rätt ordning och attribut
@@ -94,7 +92,6 @@ describe("movieSort", () => {
     );
   });
 
-  // Testfall för att hantera filmer med lika titlar när ordningen är fallande
   test("it should handle movies with equal titles and desc is true", () => {
     // Filmer med lika titlar
     const equalTitleMovies = [
@@ -152,7 +149,7 @@ describe("movieSort", () => {
     );
   });
 
-  // Testfall för att hantera filmer med lika titlar när ordningen är stigande
+  
   test("it should handle movies with equal titles and desc is false", () => {
     // Filmer med lika titlar
     const equalTitleMovies = [
@@ -208,7 +205,6 @@ describe("movieSort", () => {
     );
   });
 
-  // Testfall för att hantera filmer med lika data
   test("it should handle movies with equal data", () => {
     // Filmer med lika data
     const equalData = [

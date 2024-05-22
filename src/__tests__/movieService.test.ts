@@ -1,45 +1,55 @@
 import { testData } from "../ts/services/__mocks__/movieService";
 import * as movieService from "../ts/services/movieService";
 
-// Mockar axios-biblioteket för att simulera HTTP-anrop
+// Mockar axios-biblioteket för att simulera API-anrop
 jest.mock("axios", () => ({
   get: async (url: string) => {
     return new Promise((resolve, reject) => {
-      // Om URL:en slutar med 'error', avvisa promisen med ett fel
+      // Returnerar ett fel om URL:en slutar på 'error'
       if (url.endsWith("error")) {
         reject("error");
+        // Returnerar tom data om URL:en slutar på 'empty'
+      } else if (url.endsWith("empty")) {
+        resolve({ data: { Search: [] } });
+        // Returnerar testData för alla andra URL:er
       } else {
-        // Annars lös promisen med testdata
         resolve({ data: { Search: testData } });
       }
     });
   },
 }));
 
-// Testar att generera ett felmeddelande vid felaktig URL
-test("it should generate error message", async () => {
-  try {
-    // Försöker hämta data med en URL som slutar med 'error'
-    await movieService.getData("error");
-  } catch (error: any) {
-    // Kontrollera att felmeddelandet är korrekt
-    expect(error.length).toBe(0);
-    // Kontrollera att testdata är tomt
-    expect(testData.length).toBe(0);
-    // Kontrollera att testdatans första titel inte är 'Avatar'
-    expect(testData[0].Title).not.toBe("Avatar");
-  }
-});
+// Testsvit för funktionerna i MovieService 
+describe("MovieService", () => {
+  test("it should generate error message", async () => {
+    try {
+      await movieService.getData("error");
+    } catch (error: any) {
+      expect(error).toBe("error");
+    }
+  });
 
-// Testar att hämta testdata med en korrekt URL
-test("it should get test data", async () => {
-  // Hämta data med en korrekt URL
-  await movieService.getData("text");
+  test("it should get test data", async () => {
+    const data = await movieService.getData("test");
+    // Kontrollera att tre filmer returneras
+    expect(data.length).toBe(3);
+    // Kontrollera att första filmen är 'Avatar'
+    expect(data[0].Title).toBe("Avatar");
+    // Kontrollera att data inte är null
+    expect(data).not.toBe(null);
+  });
 
-  // kontrollera att testdata innehåller 3 filmer
-  expect(testData.length).toBe(3);
-  // Kontrollera att första filmens titel är 'Avatar'
-  expect(testData[0].Title).toBe("Avatar");
-  // Kontrollera att testdata inte är null
-  expect(testData).not.toBe(null);
+  test("it should handle empty data response", async () => {
+    const data = await movieService.getData("empty");
+    // Kontrollera att inga filmer returneras 
+    expect(data.length).toBe(0);
+  });
+
+  test("it should not throw error for valid request", async () => {
+    const data = await movieService.getData("valid");
+    // Kontrollera att data är definierad
+    expect(data).toBeDefined();
+    // Kontrollera att data är en array
+    expect(Array.isArray(data)).toBe(true);
+  });
 });
