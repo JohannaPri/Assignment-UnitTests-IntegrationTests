@@ -1,5 +1,6 @@
+import { createHtml } from "../ts/htmlFunctions";
 import { IMovie } from "../ts/models/Movie";
-import { createHtml, displayNoResult, handleSubmit, init} from "../ts/movieApp";
+import { displayNoResult, handleSubmit, init} from "../ts/movieApp";
 import { getData } from "../ts/services/movieService";
 
 // Mockar getData-funktionen från movieService
