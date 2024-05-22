@@ -149,7 +149,6 @@ describe("movieSort", () => {
     );
   });
 
-  
   test("it should handle movies with equal titles and desc is false", () => {
     // Filmer med lika titlar
     const equalTitleMovies = [
