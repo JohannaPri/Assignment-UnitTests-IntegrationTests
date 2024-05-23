@@ -5,21 +5,17 @@ import * as movieService from "../ts/services/movieService";
 jest.mock("axios", () => ({
   get: async (url: string) => {
     return new Promise((resolve, reject) => {
-      // Returnerar ett fel om URL:en slutar på 'error'
       if (url.endsWith("error")) {
         reject("error");
-        // Returnerar tom data om URL:en slutar på 'empty'
       } else if (url.endsWith("empty")) {
         resolve({ data: { Search: [] } });
-        // Returnerar testData för alla andra URL:er
       } else {
         resolve({ data: { Search: testData } });
       }
     });
   },
 }));
-
-// Testsvit för funktionerna i MovieService 
+ 
 describe("MovieService", () => {
   test("it should generate error message", async () => {
     try {

@@ -93,7 +93,6 @@ describe("movieSort", () => {
   });
 
   test("it should handle movies with equal titles and desc is true", () => {
-    // Filmer med lika titlar
     const equalTitleMovies = [
       {
         Title: "Avatar",
@@ -118,7 +117,6 @@ describe("movieSort", () => {
       },
     ];
 
-    // Sortera filmerna i fallande ordning
     const sortedMovies = movieSort(equalTitleMovies, true);
 
     // Kontrollera att de sorterade filmerna innehåller rätt ordning och attribut
@@ -150,7 +148,6 @@ describe("movieSort", () => {
   });
 
   test("it should handle movies with equal titles and desc is false", () => {
-    // Filmer med lika titlar
     const equalTitleMovies = [
       {
         Title: "Avatar",
@@ -205,7 +202,6 @@ describe("movieSort", () => {
   });
 
   test("it should handle movies with equal data", () => {
-    // Filmer med lika data
     const equalData = [
       {
         Title: "Avatar",
@@ -230,7 +226,6 @@ describe("movieSort", () => {
       },
     ];
 
-    // Sortera filmerna
     const sortedMovies = movieSort(equalData);
 
     // Kontrollera att de sorterade filmerna innehåller rätt ordning och attribut

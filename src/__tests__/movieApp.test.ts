@@ -32,7 +32,6 @@ describe("handleSubmit", () => {
       "movie-container"
     ) as HTMLDivElement;
     form = document.getElementById("searchForm") as HTMLFormElement;
-
     // Mockar formulärets submit-händelse för att anropa handleSubmit
     form.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -56,13 +55,10 @@ describe("handleSubmit", () => {
     ];
     mockGetData.mockResolvedValueOnce(movies);
     searchText.value = "Avatar";
-
     // Skickar in förmuläret
     form.dispatchEvent(new Event("submit"));
-
     // Väntar på den asynkrona funktionen
     await new Promise(process.nextTick);
-
     // Verifierar att filmerna visas korrekt
     expect(movieContainer.innerHTML).toContain("Avatar");
     expect(movieContainer.querySelector("img")?.src).toBe(
@@ -74,13 +70,10 @@ describe("handleSubmit", () => {
     // Förbereder mock för tomt resultat
     mockGetData.mockResolvedValueOnce([]);
     searchText.value = "NonExistentMovie";
-
     // Skickar in formuläret
     form.dispatchEvent(new Event("submit"));
-
     // Väntar på den asynkrona funktionen
     await new Promise(process.nextTick);
-
     // Verifierar att inget resultat-meddelande visas
     expect(movieContainer.innerHTML).toContain("Inga sökresultat att visa");
   });
@@ -89,13 +82,10 @@ describe("handleSubmit", () => {
     // Förbereder mock för felhantering
     mockGetData.mockRejectedValueOnce(new Error("API error"));
     searchText.value = "ErrorMovie";
-
     // Skickar in formuläret
     form.dispatchEvent(new Event("submit"));
-
     // Väntar på den asynkrona funktionen
     await new Promise(process.nextTick);
-
     // Verifierar att inget resultat-meddelande visas
     expect(movieContainer.innerHTML).toContain("Inga sökresultat att visa");
   });
@@ -103,7 +93,6 @@ describe("handleSubmit", () => {
 
 describe("createHtml", () => {
   test("it should correctly append movie elements to container", () => {
-    // Skapar en container-div
     const container = document.createElement("div");
     const movies: IMovie[] = [
       {
@@ -142,13 +131,12 @@ describe("createHtml", () => {
 
 describe("displayNoResult", () => {
   test("it should correctly display no result message", () => {
-    // Skapar en container-div
     const container = document.createElement("div");
 
     // Anropar displayNoResult-funktionen
     displayNoResult(container);
 
-    // Verifierar att inget resultat-meddelande visas på ett korrekt sätt
+    // Verifierar att inget resultat-meddelande visas, på ett korrekt sätt
     expect(container.innerHTML).toContain("Inga sökresultat att visa");
   });
 });
