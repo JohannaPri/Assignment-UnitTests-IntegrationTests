@@ -55,11 +55,8 @@ describe("handleSubmit", () => {
     ];
     mockGetData.mockResolvedValueOnce(movies);
     searchText.value = "Avatar";
-    // Skickar in förmuläret
     form.dispatchEvent(new Event("submit"));
-    // Väntar på den asynkrona funktionen
     await new Promise(process.nextTick);
-    // Verifierar att filmerna visas korrekt
     expect(movieContainer.innerHTML).toContain("Avatar");
     expect(movieContainer.querySelector("img")?.src).toBe(
       "https://m.media-amazon.com/images/M/MV5BZDA0OGQxNTItMDZkMC00N2UyLTg3MzMtYTJmNjg3Nzk5MzRiXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_SX300.jpg"
@@ -67,26 +64,18 @@ describe("handleSubmit", () => {
   });
 
   test("it should display no result message when getData returns no results", async () => {
-    // Förbereder mock för tomt resultat
     mockGetData.mockResolvedValueOnce([]);
     searchText.value = "NonExistentMovie";
-    // Skickar in formuläret
     form.dispatchEvent(new Event("submit"));
-    // Väntar på den asynkrona funktionen
     await new Promise(process.nextTick);
-    // Verifierar att inget resultat-meddelande visas
     expect(movieContainer.innerHTML).toContain("Inga sökresultat att visa");
   });
 
   test("it should display no result message when getData throws an error", async () => {
-    // Förbereder mock för felhantering
     mockGetData.mockRejectedValueOnce(new Error("API error"));
     searchText.value = "ErrorMovie";
-    // Skickar in formuläret
     form.dispatchEvent(new Event("submit"));
-    // Väntar på den asynkrona funktionen
     await new Promise(process.nextTick);
-    // Verifierar att inget resultat-meddelande visas
     expect(movieContainer.innerHTML).toContain("Inga sökresultat att visa");
   });
 });
@@ -132,11 +121,7 @@ describe("createHtml", () => {
 describe("displayNoResult", () => {
   test("it should correctly display no result message", () => {
     const container = document.createElement("div");
-
-    // Anropar displayNoResult-funktionen
     displayNoResult(container);
-
-    // Verifierar att inget resultat-meddelande visas, på ett korrekt sätt
     expect(container.innerHTML).toContain("Inga sökresultat att visa");
   });
 });

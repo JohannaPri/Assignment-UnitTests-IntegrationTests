@@ -116,7 +116,7 @@ describe("movieSort", () => {
         Year: "2004",
       },
     ];
-
+    
     const sortedMovies = movieSort(equalTitleMovies, true);
 
     // Kontrollera att de sorterade filmerna innehåller rätt ordning och attribut
@@ -171,6 +171,7 @@ describe("movieSort", () => {
         Year: "2009",
       },
     ];
+
     const sortedMovies = movieSort(equalTitleMovies, false);
 
     // Kontrollera att de sorterade filmerna innehåller rätt ordning och attribut
