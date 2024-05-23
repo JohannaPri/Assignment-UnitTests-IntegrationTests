@@ -34,7 +34,7 @@ describe("movieSort", () => {
 
   test("it should sort movies in descending order", () => {
     const sortedMovies = movieSort([...movies], true);
-    // Kontrollera att de sorterade filmerna innehåller rätt ordning och attribut
+    // Kontrollerar att de sorterade filmerna innehåller rätt ordning och attribut
     expect(sortedMovies).toEqual(
       expect.arrayContaining([
         {
@@ -64,7 +64,6 @@ describe("movieSort", () => {
 
   test("it should sort movies in ascending order", () => {
     const sortedMovies = movieSort([...movies], false);
-    // Kontrollera att de sorterade filmerna innehåller rätt ordning och attribut
     expect(sortedMovies).toEqual(
       expect.arrayContaining([
         {
@@ -119,7 +118,6 @@ describe("movieSort", () => {
     
     const sortedMovies = movieSort(equalTitleMovies, true);
 
-    // Kontrollera att de sorterade filmerna innehåller rätt ordning och attribut
     expect(sortedMovies).toEqual(
       expect.arrayContaining([
         {
@@ -174,7 +172,6 @@ describe("movieSort", () => {
 
     const sortedMovies = movieSort(equalTitleMovies, false);
 
-    // Kontrollera att de sorterade filmerna innehåller rätt ordning och attribut
     expect(sortedMovies).toEqual(
       expect.arrayContaining([
         {
@@ -229,7 +226,6 @@ describe("movieSort", () => {
 
     const sortedMovies = movieSort(equalData);
 
-    // Kontrollera att de sorterade filmerna innehåller rätt ordning och attribut
     expect(sortedMovies).toEqual(
       expect.arrayContaining([
         {
