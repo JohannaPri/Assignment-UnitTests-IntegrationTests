@@ -2,7 +2,7 @@ import { movieSort } from "../ts/functions";
 import { IMovie } from "../ts/models/Movie";
 
 describe("movieSort", () => {
-  // En array med filmer, att använda i testfallen
+  // En array med filmer att använda i testfallen
   const movies: IMovie[] = [
     {
       Title: "Avatar",
@@ -27,7 +27,7 @@ describe("movieSort", () => {
     },
   ];
 
-  // Rensa alla mockfunktioner, innan varje test
+  // Rensa alla mockfunktioner innan varje test
   beforeEach(() => {
     jest.clearAllMocks();
   });
